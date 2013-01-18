@@ -25,7 +25,7 @@
 $russianpostRequiredExtensions = array('SimpleXML', 'curl', 'pcre');
 foreach($russianpostRequiredExtensions as $russianpostExt) {
   if (!extension_loaded($russianpostExt)) {
-    throw new RussianPostSystemException('Required extension' . $russianpostExt . ' is missing');
+    throw new RussianPostSystemException('Required extension ' . $russianpostExt . ' is missing');
   }
 }
 
