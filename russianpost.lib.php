@@ -80,7 +80,7 @@ class RussianPostAPI {
     $ns = $xml->getNamespaces(true);
     if (!(
                  $xml->children($ns['S'])->Body &&
-      $records = $xml->children($ns['S'])->Body->children($ns['ns2'])->OperationHistoryData->historyRecord
+      $records = $xml->children($ns['S'])->Body->children($ns['ns4'])->OperationHistoryData->historyRecord
     ))
       throw new RussianPostDataException("There is no tracking data in XML response");
 
