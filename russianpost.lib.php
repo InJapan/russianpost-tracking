@@ -78,9 +78,17 @@ class RussianPostAPI {
       throw new RussianPostDataException("Failed to parse XML response");
 
     $ns = $xml->getNamespaces(true);
+
+    foreach($ns as $key => $dummy) {
+      if (strpos($key, 'ns') === 0) {
+        $nsKey = $key;
+        break;
+      }
+    }
+
     if (!(
                  $xml->children($ns['S'])->Body &&
-      $records = $xml->children($ns['S'])->Body->children($ns['ns2'])->OperationHistoryData->historyRecord
+      $records = $xml->children($ns['S'])->Body->children($ns[$nsKey])->OperationHistoryData->historyRecord
     ))
       throw new RussianPostDataException("There is no tracking data in XML response");
 
