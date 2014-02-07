@@ -86,6 +86,10 @@ class RussianPostAPI {
       }
     }
 
+    if (empty($nsKey)) {
+      throw new RussianPostDataException("Failed to detect correct namespace in XML response");
+    }
+
     if (!(
                  $xml->children($ns['S'])->Body &&
       $records = $xml->children($ns['S'])->Body->children($ns[$nsKey])->OperationHistoryData->historyRecord
