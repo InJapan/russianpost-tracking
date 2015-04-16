@@ -59,13 +59,13 @@ class RussianPostAPI {
    * @param string $trackingNumber tracking number
    * @return array of RussianPostTrackingRecord
    */
-  public function getOperationHistory($trackingNumber) {
+  public function getOperationHistory($trackingNumber, $language = 'RUS') {
     $trackingNumber = trim($trackingNumber);
     if (!preg_match('/^[0-9]{14}|[A-Z]{2}[0-9]{9}[A-Z]{2}$/', $trackingNumber)) {
       throw new RussianPostArgumentException('Incorrect format of tracking number: ' . $trackingNumber);
     }
 
-    $data = $this->makeRequest($trackingNumber);
+    $data = $this->makeRequest($trackingNumber, $language);
     $data = $this->parseResponse($data);
 
     return $data;
@@ -123,7 +123,7 @@ class RussianPostAPI {
     return $out;
   }
 
-  protected function makeRequest($trackingNumber) {
+  protected function makeRequest($trackingNumber, $language) {
     $channel = curl_init(self::SOAPEndpoint);
 
     $data = <<<EOD
@@ -133,6 +133,7 @@ class RussianPostAPI {
        <OperationHistoryRequest xmlns="http://russianpost.org/operationhistory/data">
            <Barcode>$trackingNumber</Barcode>
            <MessageType>0</MessageType>
+           <Language>$language</Language>
        </OperationHistoryRequest>
    </s:Body>
 </s:Envelope>
