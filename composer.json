@@ -1,0 +1,13 @@
+{
+  "name": "injapan/russianpost",
+  "description": "Russian Post API",
+  "require": {
+    "php": ">=5.0.0"
+  },
+  "autoload": {
+    "psr-0": {
+      "": "src/"
+    }
+  },
+  "minimum-stability": "stable"
+}
