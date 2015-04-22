@@ -6,7 +6,7 @@
 - *2015-04-22* Информация о наложенном платеже; совместимость с composer
 - *2012-11-24* Первая версия
 
-** Инсталляция **
+**Инсталляция**
 
 Добавьте в composer.json репозиторий и пакет:
 
@@ -52,7 +52,7 @@ Russian Post items tracking via PHP
 - *2015-04-22* COD payment information; composer compatibility
 - *2012-11-24* First release
 
-** Инсталляция **
+**Инсталляция**
 
 Add custom repo and package requirement to composer.json:
 
