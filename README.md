@@ -52,7 +52,7 @@ Russian Post items tracking via PHP
 - *2015-04-22* COD payment information; composer compatibility
 - *2012-11-24* First release
 
-**Инсталляция**
+**Install**
 
 Add custom repo and package requirement to composer.json:
 
