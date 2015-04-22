@@ -6,6 +6,26 @@
 - *2015-04-22* Информация о наложенном платеже; совместимость с composer
 - *2012-11-24* Первая версия
 
+** Инсталляция **
+
+Добавьте в composer.json репозиторий и пакет:
+
+```javascript
+{
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/InJapan/russianpost-tracking"
+    }
+  ],
+  "require": {
+    "injapan/russianpost": "dev-master"
+  }
+}
+```
+
+Выполните composer install
+
 **Доступ**
 
 Веб-сервис, к которому обращается библиотека, не требует аутентификации.
@@ -31,6 +51,26 @@ Russian Post items tracking via PHP
 
 - *2015-04-22* COD payment information; composer compatibility
 - *2012-11-24* First release
+
+** Инсталляция **
+
+Add custom repo and package requirement to composer.json:
+
+```javascript
+{
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/InJapan/russianpost-tracking"
+    }
+  ],
+  "require": {
+    "injapan/russianpost": "dev-master"
+  }
+}
+```
+
+Run composer install.
 
 **Access**
 
