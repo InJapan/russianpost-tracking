@@ -105,8 +105,8 @@ EOD;
       $outRecord->operationDate            = (string) $rec->OperationParameters->OperDate;
 
       $outRecord->itemWeight               = round(floatval($rec->ItemParameters->Mass) / 1000, 3);
-      $outRecord->declaredValue            = round(floatval($rec->FinanceParameters->Value) / 100, 2);
-      $outRecord->collectOnDeliveryPrice   = round(floatval($rec->FinanceParameters->Payment) / 100, 2);
+      $outRecord->declaredValue            = floatval($rec->FinanceParameters->Value);
+      $outRecord->collectOnDeliveryPrice   = floatval($rec->FinanceParameters->Payment);
 
       $out[] = $outRecord;
     }
@@ -160,7 +160,7 @@ EOD;
       $outRecord->eventName             = (string) $rec->EventName;
       $outRecord->destinationPostalCode = (string) $rec->IndexTo;
       $outRecord->eventPostalCode       = (string) $rec->IndexEvent;
-      $outRecord->paymentAmount         = (int)    $rec->SumPaymentForward;
+      $outRecord->paymentAmount         = round(intval($rec->SumPaymentForward) / 100, 2);
       $outRecord->destinationContryCode = (string) $rec->CountryToCode;
       $outRecord->eventCountryCode      = (string) $rec->CountryEventCode;
 
