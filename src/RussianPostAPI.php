@@ -47,7 +47,7 @@ class RussianPostAPI {
     $russianpostRequiredExtensions = array('SimpleXML', 'curl', 'pcre');
     foreach($russianpostRequiredExtensions as $russianpostExt) {
       if (!extension_loaded($russianpostExt)) {
-        throw new RussianPostSystemException('Required extension ' . $russianpostExt . ' is missing');
+        throw new RussianPostSystemException('Required extension ' . $russianpostExt . ' is missing', 100);
       }
     }
 
@@ -85,7 +85,7 @@ EOD;
     $records = $data->OperationHistoryData->historyRecord;
 
     if (empty($records))
-      throw new RussianPostDataException("There is no tracking data in XML response");
+      throw new RussianPostDataException("There is no tracking data in XML response", 101);
 
     $out = array();
     foreach($records as $rec) {
@@ -146,7 +146,7 @@ EOD;
     $records = $data->PostalOrderEventsForMaiOutput;
 
     if (empty($records))
-      throw new RussianPostDataException("There is no COD data in XML response");
+      throw new RussianPostDataException("There is no COD data in XML response", 102);
 
     $out = array();
     foreach($records->children() as $rec) {
@@ -173,7 +173,7 @@ EOD;
   protected function checkTrackingNumber($trackingNumber) {
     $trackingNumber = trim($trackingNumber);
     if (!preg_match('/^[0-9]{14}|[A-Z]{2}[0-9]{9}[A-Z]{2}$/', $trackingNumber)) {
-      throw new RussianPostArgumentException('Incorrect format of tracking number: ' . $trackingNumber);
+      throw new RussianPostArgumentException('Incorrect format of tracking number: ' . $trackingNumber, 103);
     }
 
     return $trackingNumber;
@@ -183,7 +183,7 @@ EOD;
     $xml = @simplexml_load_string($raw);
 
     if (!is_object($xml))
-      throw new RussianPostDataException("Failed to parse XML response");
+      throw new RussianPostDataException("Failed to parse XML response", 104);
 
     $ns = $xml->getNamespaces(true);
 
@@ -195,14 +195,14 @@ EOD;
     }
 
     if (empty($nsKey)) {
-      throw new RussianPostDataException("Failed to detect correct namespace in XML response");
+      throw new RussianPostDataException("Failed to detect correct namespace in XML response", 105);
     }
 
     if (!(
       $xml->children($ns['S'])->Body &&
       $data = $xml->children($ns['S'])->Body->children($ns[$nsKey])
     ))
-      throw new RussianPostDataException("There is no tracking data in XML response");
+      throw new RussianPostDataException("There is no tracking data in XML response", 106);
 
     return $data;
   }
